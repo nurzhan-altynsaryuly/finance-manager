@@ -1,0 +1,139 @@
+{
+  "incomes": [
+    {
+      "id": "maid0hf5",
+      "date": "5/10/2025, 8:08:02 PM",
+      "cash": "500",
+      "description": "Salary",
+      "method": "income"
+    },
+    {
+      "id": "majiovia",
+      "date": "5/11/2025, 3:34:44 PM",
+      "cash": "5000",
+      "description": "Salary",
+      "method": "income"
+    },
+    {
+      "id": "majisy60",
+      "date": "5/11/2025, 3:37:54 PM",
+      "cash": "500",
+      "description": "Debt",
+      "method": "income"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "maicq452",
+      "date": "5/10/2025, 7:59:58 PM",
+      "cash": "500",
+      "description": "Juice",
+      "method": "expense",
+      "category": "Market"
+    },
+    {
+      "id": "maicrqyl",
+      "date": "5/10/2025, 8:01:14 PM",
+      "cash": "350",
+      "description": "Nimesil",
+      "method": "expense",
+      "category": "Health"
+    },
+    {
+      "id": "maicy93h",
+      "date": "5/10/2025, 8:06:18 PM",
+      "cash": "500",
+      "description": "RDR 2",
+      "method": "expense",
+      "category": "Games"
+    },
+    {
+      "id": "maid1ep5",
+      "date": "5/10/2025, 8:08:45 PM",
+      "cash": "444",
+      "description": "Superlight",
+      "method": "expense",
+      "category": "Device"
+    },
+    {
+      "id": "majijjs7",
+      "date": "5/11/2025, 3:30:36 PM",
+      "cash": "550",
+      "description": "Door",
+      "method": "expense",
+      "category": "Home"
+    },
+    {
+      "id": "majj25rk",
+      "date": "5/11/2025, 3:45:04 PM",
+      "cash": "600",
+      "description": "GTA 6",
+      "method": "expense",
+      "category": "Games"
+    },
+    {
+      "id": "majm7ihc",
+      "date": "5/11/2025, 5:13:12 PM",
+      "cash": 5000,
+      "description": "France",
+      "method": "expense",
+      "category": "Travel"
+    }
+  ],
+  "category": [
+    {
+      "id": "907f",
+      "category": "Market",
+      "color": "rgba(207, 90, 29, 0.5)",
+      "amount": 500
+    },
+    {
+      "id": "fac6",
+      "category": "Health",
+      "color": "rgba(200, 228, 41, 0.5)",
+      "amount": 350
+    },
+    {
+      "id": "959e",
+      "category": "Games",
+      "color": "rgba(87, 212, 105, 0.5)",
+      "amount": 1100
+    },
+    {
+      "id": "4051",
+      "category": "Sport",
+      "color": "rgba(69, 107, 63, 0.5)",
+      "amount": 0
+    },
+    {
+      "id": "3506",
+      "category": "Education",
+      "color": "rgba(163, 203, 88, 0.5)",
+      "amount": 0
+    },
+    {
+      "id": "9321",
+      "category": "Device",
+      "color": "rgba(162, 131, 136, 0.5)",
+      "amount": 444
+    },
+    {
+      "id": "bb4d",
+      "category": "Home",
+      "color": "rgba(97, 58, 228, 0.5)",
+      "amount": 550
+    },
+    {
+      "id": "0cea",
+      "category": "Hobbie",
+      "color": "rgba(206, 153, 161, 0.5)",
+      "amount": "0"
+    },
+    {
+      "id": "405a",
+      "category": "Travel",
+      "color": "rgba(127, 49, 122, 0.5)",
+      "amount": 5000
+    }
+  ]
+}
