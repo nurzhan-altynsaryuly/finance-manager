@@ -26,7 +26,10 @@ export function Navigation() {
             } flex justify-left mx-5 py-2 px-5 gap-2 items-center rounded-xs hover:bg-[#299D91]`}
           >
             <div
-              className={`bg-[url(assets/navigations/${item.icon})] h-5 w-5 bg-cover`}
+              style={{
+                backgroundImage: `url(./src/assets//navigations/${item.icon})`,
+              }}
+              className="h-5 w-5 bg-cover"
             ></div>
             <p className="font-['Inter'] text-xl text-white">{item.label}</p>
           </Link>

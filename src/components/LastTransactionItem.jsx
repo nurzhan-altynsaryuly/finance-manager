@@ -3,7 +3,7 @@ import { UseTransactions } from "../hooks/UseTransactions";
 export default function LastTransactionItem() {
   const [transactionsData] = UseTransactions();
 
-  const lastTransaction = transactionsData.slice(-1)[0];
+  const lastTransaction = transactionsData[0];
 
   return (
     <div className="p-15 bg-white rounded-xl h-max mt-15 drop-shadow-xl">
