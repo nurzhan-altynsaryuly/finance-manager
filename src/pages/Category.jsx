@@ -43,6 +43,7 @@ export default function Category() {
           type="text"
           value={categoryInput}
           onChange={(e) => setCategoryInput(e.target.value)}
+          placeholder="Type new category"
           className="px-5 py-3 border border-gray-300 rounded-xs text-xl focus:outline-none h-15"
         />
         <button

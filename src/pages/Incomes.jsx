@@ -69,7 +69,7 @@ export default function Incomes() {
             [...data].reverse().map((item, idx) => (
               <div
                 key={item.id}
-                className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs"
+                className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs relative"
               >
                 <p className="text-green-600 font-['Inter'] font-bold text-xl">
                   +{item.cash}$
@@ -82,7 +82,7 @@ export default function Incomes() {
                 </p>
                 <button
                   onClick={() => deleteIncome(item.id)}
-                  className="text-red-600 hover:text-red-800 text-xl font-bold mt-2 hover:cursor-pointer hover:opacity-50"
+                  className="text-xl mt-2 hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-2"
                 >
                   🗑️
                 </button>

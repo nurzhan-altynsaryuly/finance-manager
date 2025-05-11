@@ -79,12 +79,14 @@ export default function Expenses() {
           type="number"
           value={cash}
           onChange={(e) => setCash(e.target.value)}
+          placeholder="Amount"
           className="p-5 border-1 border-solid border-gray-300 h-15 w-xs text-xl font-['Inter'] rounded-xs focus:outline-none"
         />
         <input
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          placeholder="Description"
           className="p-5 border-1 border-solid border-gray-300 h-15 w-xs text-xl font-['Inter'] rounded-xs focus:outline-none"
         />
         <select
@@ -118,7 +120,7 @@ export default function Expenses() {
           [...expenses].reverse().map((item) => (
             <div
               key={item.id}
-              className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs"
+              className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs relative"
             >
               <p className="text-red-600 font-['Inter'] font-bold text-xl">
                 -{item.cash}$
@@ -137,7 +139,7 @@ export default function Expenses() {
               <p className="text-gray-300 font-['Inter'] text-xs mt-1">{item.date}</p>
               <button
                 onClick={() => deleteData(item)}
-                className="text-red-600 hover:text-red-800 text-xl font-bold hover:cursor-pointer hover:opacity-50"
+                className="text-xl hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-2"
               >
                 🗑️
               </button>

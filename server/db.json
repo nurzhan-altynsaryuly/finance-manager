@@ -78,6 +78,14 @@
       "description": "France",
       "method": "expense",
       "category": "Travel"
+    },
+    {
+      "id": "majp1q12",
+      "date": "5/11/2025, 6:32:41 PM",
+      "cash": 1500,
+      "description": "Shoes",
+      "method": "expense",
+      "category": "Sport"
     }
   ],
   "category": [
@@ -103,7 +111,7 @@
       "id": "4051",
       "category": "Sport",
       "color": "rgba(69, 107, 63, 0.5)",
-      "amount": 0
+      "amount": 1500
     },
     {
       "id": "3506",

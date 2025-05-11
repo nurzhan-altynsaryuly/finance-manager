@@ -21,11 +21,9 @@ export function Navigation() {
           <Link
             key={item.path}
             to={item.path}
-            className={
-              location.pathname === item.path
-                ? "bg-[#299D91] flex justify-left mx-5 py-2 px-5 gap-2 items-center rounded-xs"
-                : "flex justify-left mx-5 py-2 px-5 gap-2 items-center rounded-xs hover:cursor-pointer hover:bg-[#299D91]"
-            }
+            className={`${
+              location.pathname === item.path && "bg-[#299D91]"
+            } flex justify-left mx-5 py-2 px-5 gap-2 items-center rounded-xs hover:bg-[#299D91]`}
           >
             <div
               className={`bg-[url(assets/navigations/${item.icon})] h-5 w-5 bg-cover`}
