@@ -10,34 +10,26 @@
     {
       "id": "majiovia",
       "date": "5/11/2025, 3:34:44 PM",
-      "cash": "5000",
+      "cash": "2500",
       "description": "Salary",
       "method": "income"
     },
     {
       "id": "majisy60",
       "date": "5/11/2025, 3:37:54 PM",
-      "cash": "500",
+      "cash": "650",
       "description": "Debt",
       "method": "income"
     },
     {
       "id": "majpwkcb",
       "date": "5/11/2025, 6:56:40 PM",
-      "cash": 1500,
-      "description": "Stark",
+      "cash": "500",
+      "description": "Freelance",
       "method": "income"
     }
   ],
   "expenses": [
-    {
-      "id": "maicq452",
-      "date": "5/10/2025, 7:59:58 PM",
-      "cash": "500",
-      "description": "Juice",
-      "method": "expense",
-      "category": "Market"
-    },
     {
       "id": "maicrqyl",
       "date": "5/10/2025, 8:01:14 PM",
@@ -73,7 +65,7 @@
     {
       "id": "majj25rk",
       "date": "5/11/2025, 3:45:04 PM",
-      "cash": "600",
+      "cash": "500",
       "description": "GTA 6",
       "method": "expense",
       "category": "Games"
@@ -81,18 +73,18 @@
     {
       "id": "majm7ihc",
       "date": "5/11/2025, 5:13:12 PM",
-      "cash": 5000,
-      "description": "France",
+      "cash": "5000",
+      "description": "Guitar",
       "method": "expense",
-      "category": "Travel"
+      "category": "Hobbie"
     },
     {
       "id": "majp1q12",
       "date": "5/11/2025, 6:32:41 PM",
       "cash": 1500,
-      "description": "Shoes",
+      "description": "Books",
       "method": "expense",
-      "category": "Sport"
+      "category": "Education"
     }
   ],
   "category": [
@@ -100,7 +92,7 @@
       "id": "907f",
       "category": "Market",
       "color": "rgba(207, 90, 29, 0.5)",
-      "amount": 500
+      "amount": 0
     },
     {
       "id": "fac6",
@@ -112,19 +104,19 @@
       "id": "959e",
       "category": "Games",
       "color": "rgba(87, 212, 105, 0.5)",
-      "amount": 1100
+      "amount": 1000
     },
     {
       "id": "4051",
       "category": "Sport",
       "color": "rgba(69, 107, 63, 0.5)",
-      "amount": 1500
+      "amount": 0
     },
     {
       "id": "3506",
       "category": "Education",
       "color": "rgba(163, 203, 88, 0.5)",
-      "amount": 0
+      "amount": 1500
     },
     {
       "id": "9321",
@@ -142,13 +134,49 @@
       "id": "0cea",
       "category": "Hobbie",
       "color": "rgba(206, 153, 161, 0.5)",
-      "amount": "0"
+      "amount": 5000
     },
     {
       "id": "405a",
       "category": "Travel",
       "color": "rgba(127, 49, 122, 0.5)",
-      "amount": 5000
+      "amount": 0
+    },
+    {
+      "id": "24a3",
+      "category": "Food",
+      "color": "rgba(119, 157, 225, 0.5)",
+      "amount": "0"
+    },
+    {
+      "id": "8dbb",
+      "category": "Drinks",
+      "color": "rgba(39, 140, 20, 0.5)",
+      "amount": "0"
+    },
+    {
+      "id": "521e",
+      "category": "Charity",
+      "color": "rgba(4, 75, 85, 0.5)",
+      "amount": "0"
+    },
+    {
+      "id": "f8ce",
+      "category": "Entertainment",
+      "color": "rgba(233, 168, 202, 0.5)",
+      "amount": "0"
+    },
+    {
+      "id": "0361",
+      "category": "Family",
+      "color": "rgba(1, 189, 251, 0.5)",
+      "amount": "0"
+    },
+    {
+      "id": "f689",
+      "category": "Cafe",
+      "color": "rgba(52, 206, 1, 0.5)",
+      "amount": "0"
     }
   ]
 }

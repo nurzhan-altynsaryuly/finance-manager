@@ -15,5 +15,5 @@ export function UseTransactions() {
     }
   }, [incomes, expenses, loadingIncomes, loadingExpenses]);
 
-  return [transactionsData, setTransactionsData];
+  return [transactionsData];
 }

@@ -46,12 +46,12 @@ export default function Transactions() {
           <div
             style={{
               backgroundColor: item.category
-                ? categoriesMap[item.category] || "#ccc"
-                : "#ccc",
+                ? categoriesMap[item.category] || "rgba(147, 250, 165, 1)"
+                : "rgba(147, 250, 165, 1)",
             }}
             className="border-gray-500 p-3 text-center border-1"
           >
-            {item.category || "No data"}
+            {item.category || "Income"}
           </div>
           <div className="text-center border-1 p-3 border-gray-500 flex justify-center">
             <p>{item.date}</p>

@@ -1,5 +1,6 @@
 import { useGetCategoryQuery, useAddCategoryMutation } from "../api/apiSlice";
 import { useState } from "react";
+import { Link } from "react-router";
 
 export default function Category() {
   const [categoryInput, setCategoryInput] = useState("");
@@ -8,7 +9,6 @@ export default function Category() {
   const { data: categories, isLoading } = useGetCategoryQuery();
 
   const handleAddCategory = async () => {
-
     const generateRandomColor = () => {
       const red = Math.floor(Math.random() * 256);
       const green = Math.floor(Math.random() * 256);
@@ -33,7 +33,7 @@ export default function Category() {
   if (isLoading) return <p>Loading categories...</p>;
 
   return (
-    <div className="w-5/6 px-30">
+    <div className="w-5/6 px-30 pb-15">
       <p className="text-[#191919] text-center text-4xl font-bold w-full mt-15">
         Category
       </p>
@@ -66,15 +66,20 @@ export default function Category() {
         </p>
       )}
 
-      <div className="w-full grid grid-cols-6 gap-10 mt-10">
+      <div className="w-full grid grid-cols-4 gap-10 mt-10">
         {categories?.map((item) => (
-          <div
+          <Link
             key={item.id}
-            style={{ backgroundColor: item.color }}
-            className="text-center p-10 border w-full box-border rounded"
+            to={`/category/${item.category.toLowerCase()}`}
+            state={item}
           >
-            <p className="text-3xl font-bold text-white">{item.category}</p>
-          </div>
+            <div
+              style={{ backgroundColor: item.color }}
+              className="text-center p-10 border w-full box-border rounded hover:opacity-50"
+            >
+              <p className="text-xl font-bold text-white">{item.category}</p>
+            </div>
+          </Link>
         ))}
       </div>
     </div>

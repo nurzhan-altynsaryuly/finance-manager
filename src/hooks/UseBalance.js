@@ -19,5 +19,5 @@ export function UseBalance() {
     }
   }, [incomes, expenses, loadingIncomes, loadingExpenses]);
 
-  return [balance, setBalance];
+  return [balance];
 }

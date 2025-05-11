@@ -6,7 +6,7 @@ export default function LastTransactionItem() {
   const lastTransaction = transactionsData[0];
 
   return (
-    <div className="p-15 bg-white rounded-xl h-max mt-15 drop-shadow-xl">
+    <div className="p-15 bg-white rounded-xl h-max mt-15 border-1 border-solid border-gray-300">
       <p className="text-3xl font-['Inter'] font-bold text-[#191919]">
         Last Transaction
       </p>

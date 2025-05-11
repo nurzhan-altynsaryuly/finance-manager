@@ -13,5 +13,5 @@ export function UseExpensesCash() {
     }
   }, [expenses, loadingExpenses]);
 
-  return [expensesCash, setExpensesCash];
+  return [expensesCash];
 }

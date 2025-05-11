@@ -13,5 +13,5 @@ export function UseIncomesCash() {
     }
   }, [incomes, loadingIncomes]);
 
-  return [incomesCash, setIncomesCash];
+  return [incomesCash];
 }

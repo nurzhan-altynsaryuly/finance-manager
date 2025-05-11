@@ -89,6 +89,30 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [{ type: "category", id: "LIST" }],
     }),
+    changeIncome: build.mutation({
+      query: (data) => ({
+        url: `incomes/${data.id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: [{ type: "incomes", id: "LIST" }],
+    }),
+    changeExpense: build.mutation({
+      query: (data) => ({
+        url: `expenses/${data.id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: [{ type: "expenses", id: "LIST" }],
+    }),
+    changeAmount: build.mutation({
+      query: (data) => ({
+        url: `category/${data.id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: [{ type: "expenses", id: "LIST" }],
+    }),
   }),
 });
 
@@ -103,4 +127,7 @@ export const {
   useAddCategoryMutation,
   useAddAmountMutation,
   useDeleteAmountMutation,
+  useChangeIncomeMutation,
+  useChangeExpenseMutation,
+  useChangeAmountMutation,
 } = apiSlice;
