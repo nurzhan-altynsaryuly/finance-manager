@@ -9,7 +9,7 @@ export default function ExpensesItem() {
 
   if (!expenses.length) {
     return (
-      <div className="p-15 bg-white rounded-xl h-auto mt-15 border-1 border-solid border-gray-300 flex flex-col items-center">
+      <div className="p-15 bg-white rounded-xs h-auto mt-15 border-1 border-solid border-gray-300 flex flex-col items-center">
         <p className="text-3xl font-['Inter'] font-bold text-[#191919] w-max mb-5">
           Expenses
         </p>
@@ -19,7 +19,7 @@ export default function ExpensesItem() {
   }
 
   return (
-    <div className="p-15 bg-white rounded-xl h-auto mt-15 border-1 border-solid border-gray-300 flex flex-col items-center">
+    <div className="p-15 bg-white rounded-xs h-auto mt-15 border-1 border-solid border-gray-300 flex flex-col items-center">
       <p className="text-3xl font-['Inter'] font-bold text-[#191919] w-max mb-5">
         Expenses
       </p>

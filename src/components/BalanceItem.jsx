@@ -5,7 +5,7 @@ export default function BalanceItem() {
 
   return (
     <>
-      <div className="p-15 bg-white rounded-xl h-max mt-20 border-1 border-solid border-gray-300">
+      <div className="p-15 bg-white rounded-xs h-max mt-20 border-1 border-solid border-gray-300">
         <p className="text-3xl font-['Inter'] font-bold text-[#191919] text-center">
           Total Balance
         </p>

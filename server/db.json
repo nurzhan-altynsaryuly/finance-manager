@@ -27,6 +27,13 @@
       "cash": "500",
       "description": "Freelance",
       "method": "income"
+    },
+    {
+      "id": "mal1ldbw",
+      "date": "5/12/2025, 5:11:39 PM",
+      "cash": 10000,
+      "description": "Salary",
+      "method": "income"
     }
   ],
   "expenses": [
@@ -85,6 +92,14 @@
       "description": "Books",
       "method": "expense",
       "category": "Education"
+    },
+    {
+      "id": "mal1kli8",
+      "date": "5/12/2025, 5:11:03 PM",
+      "cash": 570,
+      "description": "Burger",
+      "method": "expense",
+      "category": "Cafe"
     }
   ],
   "category": [
@@ -176,7 +191,7 @@
       "id": "f689",
       "category": "Cafe",
       "color": "rgba(52, 206, 1, 0.5)",
-      "amount": "0"
+      "amount": 570
     }
   ]
 }

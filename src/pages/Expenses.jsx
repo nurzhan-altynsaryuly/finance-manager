@@ -132,11 +132,11 @@ export default function Expenses() {
       ...prevCategory,
       amount: Number(prevCategory.amount) - Number(prevCash),
     };
+    changeAmount(prevCategoryData);
     const newCategoryData = {
       ...newCategory,
       amount: Number(newCategory.amount) + Number(changingItem.cash),
     };
-    changeAmount(prevCategoryData);
     changeAmount(newCategoryData);
   };
 
