@@ -2,6 +2,8 @@ import { useGetCategoryQuery, useAddCategoryMutation } from "../api/apiSlice";
 import { useState } from "react";
 import { Link } from "react-router";
 
+import { UsePagination } from "../hooks/UsePagination";
+
 export default function Category() {
   const [categoryInput, setCategoryInput] = useState("");
   const [addCategory, { isLoading: isAdding, error: addError }] =
@@ -29,6 +31,8 @@ export default function Category() {
       console.error("Error adding category:", err);
     }
   };
+
+  const [totalPages, page, setPage, start, end] = UsePagination(categories, 7);
 
   if (isLoading) return <p>Loading categories...</p>;
 
@@ -67,7 +71,7 @@ export default function Category() {
       )}
 
       <div className="w-full grid grid-cols-4 gap-10 mt-10">
-        {categories?.map((item) => (
+        {categories?.slice(start, end).map((item) => (
           <Link
             key={item.id}
             to={`/category/${item.category.toLowerCase()}`}
@@ -82,6 +86,23 @@ export default function Category() {
           </Link>
         ))}
       </div>
+      {categories.length > 0 && totalPages != 1 && (
+        <div className="flex justify-center mt-5 flex-wrap gap-2">
+          {[...Array(Math.ceil(totalPages)).keys()].map((i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i + 1)}
+              className={`px-4 py-2 rounded hover:cursor-pointer ${
+                page === i + 1
+                  ? "bg-[#299D91] text-white font-bold"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

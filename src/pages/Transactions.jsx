@@ -1,6 +1,7 @@
 import { UseTransactions } from "../hooks/UseTransactions";
 import { useGetCategoryQuery } from "../api/apiSlice";
 import { useEffect, useState } from "react";
+import { UsePagination } from "../hooks/UsePagination";
 
 export default function Transactions() {
   const [transactionsData] = UseTransactions();
@@ -40,7 +41,10 @@ export default function Transactions() {
     }
 
     setDataFilter(filtered);
+    setPage(1);
   }, [transactionsData, input, selectCategory, selectSort, sortDirection]);
+
+  const [totalPages, page, setPage, start, end] = UsePagination(dataFilter, 13);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -73,13 +77,12 @@ export default function Transactions() {
             <option value="cash">Cash</option>
           </select>
         </div>
-
         <select
           value={selectCategory}
           onChange={(e) => setSelectCategory(e.target.value)}
           className="px-4 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none w-max mr-5 bg-white"
         >
-          <option value="all">All</option>
+          <option value="all">All categories</option>
           {data.map((item) => (
             <option key={item.id} value={item.category}>
               {item.category}
@@ -109,8 +112,8 @@ export default function Transactions() {
         </div>
       </div>
       {dataFilter.length ? (
-        dataFilter.map((item, idx) => (
-          <div key={idx} className="grid grid-cols-4">
+        dataFilter.slice(start, end).map((item) => (
+          <div key={item.id} className="grid grid-cols-4">
             <div
               style={{ color: item.method === "expense" ? "red" : "green" }}
               className="border-gray-500 text-center border-1 p-3"
@@ -138,6 +141,23 @@ export default function Transactions() {
         ))
       ) : (
         <p className="text-xl text-gray-500 mt-5 text-center">No data</p>
+      )}
+      {dataFilter.length > 0 && totalPages != 1 && (
+        <div className="flex justify-center mt-5 flex-wrap gap-2">
+          {[...Array(totalPages).keys()].map((i) => (
+            <button
+              key={i}
+              onClick={() => setPage(i + 1)}
+              className={`px-4 py-2 rounded hover:cursor-pointer ${
+                page === i + 1
+                  ? "bg-[#299D91] text-white font-bold"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
       )}
     </div>
   );

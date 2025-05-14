@@ -62,14 +62,6 @@
       "category": "Device"
     },
     {
-      "id": "majijjs7",
-      "date": "5/11/2025, 3:30:36 PM",
-      "cash": "550",
-      "description": "Door",
-      "method": "expense",
-      "category": "Home"
-    },
-    {
       "id": "majj25rk",
       "date": "5/11/2025, 3:45:04 PM",
       "cash": "500",
@@ -100,6 +92,78 @@
       "description": "Burger",
       "method": "expense",
       "category": "Cafe"
+    },
+    {
+      "id": "malgkbc1",
+      "date": "5/13/2025, 12:10:44 AM",
+      "cash": 1500,
+      "description": "GTA 5",
+      "method": "expense",
+      "category": "Games"
+    },
+    {
+      "id": "malglakz",
+      "date": "5/13/2025, 12:11:30 AM",
+      "cash": 750,
+      "description": "Pepsi",
+      "method": "expense",
+      "category": "Market"
+    },
+    {
+      "id": "malglnh2",
+      "date": "5/13/2025, 12:11:47 AM",
+      "cash": 250,
+      "description": "T-shirts",
+      "method": "expense",
+      "category": "Sport"
+    },
+    {
+      "id": "malgmf8v",
+      "date": "5/13/2025, 12:12:23 AM",
+      "cash": 5000,
+      "description": "France",
+      "method": "expense",
+      "category": "Travel"
+    },
+    {
+      "id": "malgmnjx",
+      "date": "5/13/2025, 12:12:33 AM",
+      "cash": 500,
+      "description": "Doner",
+      "method": "expense",
+      "category": "Food"
+    },
+    {
+      "id": "malgmz6q",
+      "date": "5/13/2025, 12:12:49 AM",
+      "cash": 340,
+      "description": "Saryagash",
+      "method": "expense",
+      "category": "Drinks"
+    },
+    {
+      "id": "malgndno",
+      "date": "5/13/2025, 12:13:07 AM",
+      "cash": 500,
+      "description": "Charity",
+      "method": "expense",
+      "category": "Charity"
+    },
+    {
+      "id": "malgnkiw",
+      "date": "5/13/2025, 12:13:16 AM",
+      "cash": 1000,
+      "description": "Cinema",
+      "method": "expense",
+      "category": "Entertainment"
+    },
+    {
+      "id": "mamluehp",
+      "date": "5/13/2025, 7:26:19 PM",
+      "cash": 500,
+      "description": "Kvas",
+      "method": "expense",
+      "category": "Market"
     }
   ],
   "category": [
@@ -107,7 +171,7 @@
       "id": "907f",
       "category": "Market",
       "color": "rgba(207, 90, 29, 0.5)",
-      "amount": 0
+      "amount": 1250
     },
     {
       "id": "fac6",
@@ -119,13 +183,13 @@
       "id": "959e",
       "category": "Games",
       "color": "rgba(87, 212, 105, 0.5)",
-      "amount": 1000
+      "amount": 2500
     },
     {
       "id": "4051",
       "category": "Sport",
       "color": "rgba(69, 107, 63, 0.5)",
-      "amount": 0
+      "amount": 250
     },
     {
       "id": "3506",
@@ -143,7 +207,7 @@
       "id": "bb4d",
       "category": "Home",
       "color": "rgba(97, 58, 228, 0.5)",
-      "amount": 550
+      "amount": 0
     },
     {
       "id": "0cea",
@@ -155,31 +219,31 @@
       "id": "405a",
       "category": "Travel",
       "color": "rgba(127, 49, 122, 0.5)",
-      "amount": 0
+      "amount": 5000
     },
     {
       "id": "24a3",
       "category": "Food",
       "color": "rgba(119, 157, 225, 0.5)",
-      "amount": "0"
+      "amount": 500
     },
     {
       "id": "8dbb",
       "category": "Drinks",
       "color": "rgba(39, 140, 20, 0.5)",
-      "amount": "0"
+      "amount": 340
     },
     {
       "id": "521e",
       "category": "Charity",
       "color": "rgba(4, 75, 85, 0.5)",
-      "amount": "0"
+      "amount": 500
     },
     {
       "id": "f8ce",
       "category": "Entertainment",
       "color": "rgba(233, 168, 202, 0.5)",
-      "amount": "0"
+      "amount": 1000
     },
     {
       "id": "0361",

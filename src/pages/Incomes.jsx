@@ -6,6 +6,7 @@ import {
 } from "../api/apiSlice";
 import { useState } from "react";
 import ModalItem from "../components/ModalItem";
+import { UsePagination } from "../hooks/UsePagination";
 
 export default function Incomes() {
   const { data, isLoading } = useGetIncomesQuery();
@@ -60,6 +61,8 @@ export default function Incomes() {
   };
 
   const isButtonDisabled = !cash || !description || cash <= 0;
+
+  const [totalPages, page, setPage, start, end] = UsePagination(data, 15);
 
   if (isLoading) return <p>Loading...</p>;
 
@@ -131,35 +134,55 @@ export default function Incomes() {
 
         <div className="grid grid-cols-5 gap-5 mt-10">
           {data &&
-            [...data].reverse().map((item, idx) => (
-              <div
-                key={item.id}
-                className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs relative"
-              >
-                <p className="text-green-600 font-['Inter'] font-bold text-xl">
-                  +{item.cash}$
-                </p>
-                <p className="text-gray-500 text-md font-['Inter']">
-                  {item.description}
-                </p>
-                <p className="text-gray-300 font-['Inter'] text-xs mt-1">
-                  {item.date}
-                </p>
-                <button
-                  onClick={() => deleteIncome(item.id)}
-                  className="text-xl mt-2 hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-2"
+            [...data]
+              .slice(start, end)
+              .reverse()
+              .map((item, idx) => (
+                <div
+                  key={item.id}
+                  className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs relative"
                 >
-                  🗑️
-                </button>
-                <button
-                  onClick={() => editData(item)}
-                  className="text-xl hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-10"
-                >
-                  ✏️
-                </button>
-              </div>
-            ))}
+                  <p className="text-green-600 font-['Inter'] font-bold text-xl">
+                    +{item.cash}$
+                  </p>
+                  <p className="text-gray-500 text-md font-['Inter']">
+                    {item.description}
+                  </p>
+                  <p className="text-gray-300 font-['Inter'] text-xs mt-1">
+                    {item.date}
+                  </p>
+                  <button
+                    onClick={() => deleteIncome(item.id)}
+                    className="text-xl mt-2 hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-2"
+                  >
+                    🗑️
+                  </button>
+                  <button
+                    onClick={() => editData(item)}
+                    className="text-xl hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-10"
+                  >
+                    ✏️
+                  </button>
+                </div>
+              ))}
         </div>
+        {data.length > 0 && totalPages != 1 && (
+          <div className="flex justify-center mt-5 flex-wrap gap-2">
+            {[...Array(totalPages).keys()].map((i) => (
+              <button
+                key={i}
+                onClick={() => setPage(i + 1)}
+                className={`px-4 py-2 rounded hover:cursor-pointer ${
+                  page === i + 1
+                    ? "bg-[#299D91] text-white font-bold"
+                    : "bg-gray-200 text-gray-700"
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
