@@ -34,6 +34,13 @@
       "cash": 10000,
       "description": "Salary",
       "method": "income"
+    },
+    {
+      "id": "mapuure7",
+      "date": "5/16/2025, 2:01:51 AM",
+      "cash": 5000,
+      "description": "Freelance",
+      "method": "income"
     }
   ],
   "expenses": [
@@ -164,6 +171,14 @@
       "description": "Kvas",
       "method": "expense",
       "category": "Market"
+    },
+    {
+      "id": "mapuss0z",
+      "date": "5/16/2025, 2:00:19 AM",
+      "cash": 500,
+      "description": "Cola",
+      "method": "expense",
+      "category": "Market"
     }
   ],
   "category": [
@@ -171,7 +186,7 @@
       "id": "907f",
       "category": "Market",
       "color": "rgba(207, 90, 29, 0.5)",
-      "amount": 1250
+      "amount": 1750
     },
     {
       "id": "fac6",

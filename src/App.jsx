@@ -1,5 +1,5 @@
 import { Navigation } from "./layouts/Navigation/Navigation";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Category from "./pages/Category";
 import CategoryPage from "./pages/CategoryPage";
 import Transactions from "./pages/Transactions";
@@ -12,7 +12,8 @@ export default function App() {
     <div className="flex">
       <Navigation />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/category" element={<Category />} />
         <Route path="/category/:name" element={<CategoryPage />} />
         <Route path="/transactions" element={<Transactions />} />

@@ -1,63 +1,43 @@
 import { UseTransactions } from "../hooks/UseTransactions";
 import { useGetCategoryQuery } from "../api/apiSlice";
-import { useEffect, useState } from "react";
 import { UsePagination } from "../hooks/UsePagination";
+
+import { useFilterSortSearch } from "../hooks/UseFilterSortSearch";
 
 export default function Transactions() {
   const [transactionsData] = UseTransactions();
   const { data, isLoading } = useGetCategoryQuery();
 
-  const [selectCategory, setSelectCategory] = useState("all");
-  const [selectSort, setSelectSort] = useState("date");
-  const [input, setInput] = useState("");
+  const {
+    filteredData,
+    searchInput,
+    setSearchInput,
+    sortKey,
+    setSortKey,
+    sortDirection,
+    setSortDirection,
+    filterValue,
+    setFilterValue,
+  } = useFilterSortSearch(transactionsData, {
+    enableSearch: true,
+    enableSort: true,
+    enableFilter: true,
+    searchKey: "description",
+  });
 
-  const [sortDirection, setSortDirection] = useState("desc");
-
-  const [dataFilter, setDataFilter] = useState([]);
-
-  useEffect(() => {
-    let filtered = [...transactionsData];
-
-    if (selectCategory !== "all") {
-      filtered = filtered.filter((item) => item.category === selectCategory);
-    }
-
-    if (input.length >= 2) {
-      filtered = filtered.filter((item) =>
-        item.description.toLowerCase().includes(input.toLowerCase())
-      );
-    }
-
-    if (selectSort === "date") {
-      filtered = filtered.sort((a, b) =>
-        sortDirection === "asc"
-          ? new Date(a.date) - new Date(b.date)
-          : new Date(b.date) - new Date(a.date)
-      );
-    } else if (selectSort === "cash") {
-      filtered = filtered.sort((a, b) =>
-        sortDirection === "asc" ? a.cash - b.cash : b.cash - a.cash
-      );
-    }
-
-    setDataFilter(filtered);
-    setPage(1);
-  }, [transactionsData, input, selectCategory, selectSort, sortDirection]);
-
-  const [totalPages, page, setPage, start, end] = UsePagination(dataFilter, 13);
+  const [totalPages, page, setPage, start, end] = UsePagination(
+    filteredData,
+    14
+  );
 
   if (isLoading) return <p>Loading...</p>;
-
-  if (!transactionsData.length) {
-    return <p>No transactions available.</p>;
-  }
 
   return (
     <div className="flex flex-col w-5/6">
       <p className="text-[#191919] text-center text-4xl font-bold w-full mt-15 mb-5">
         Transactions
       </p>
-      <div className="w-full flex justify-end px-20 mb-5">
+      <div className="w-full flex justify-end px-30 mb-5">
         <div className="flex gap-2 items-center">
           <p className="text-gray-300">Sort by</p>
           <select
@@ -69,8 +49,8 @@ export default function Transactions() {
             <option value="desc">↓ Desc</option>
           </select>
           <select
-            value={selectSort}
-            onChange={(e) => setSelectSort(e.target.value)}
+            value={sortKey}
+            onChange={(e) => setSortKey(e.target.value)}
             className=" h-15 text-xl font-['Inter'] rounded-xs focus:outline-none w-max mr-5 bg-white px-4 border-1 border-solid border-gray-300"
           >
             <option value="date">Date</option>
@@ -78,8 +58,8 @@ export default function Transactions() {
           </select>
         </div>
         <select
-          value={selectCategory}
-          onChange={(e) => setSelectCategory(e.target.value)}
+          value={filterValue}
+          onChange={(e) => setFilterValue(e.target.value)}
           className="px-4 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none w-max mr-5 bg-white"
         >
           <option value="all">All categories</option>
@@ -92,8 +72,8 @@ export default function Transactions() {
         <input
           type="text"
           placeholder="Search"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
           className="px-5 py-3 border border-gray-300 rounded-xs text-xl focus:outline-none h-15"
         />
       </div>
@@ -111,8 +91,8 @@ export default function Transactions() {
           Date
         </div>
       </div>
-      {dataFilter.length ? (
-        dataFilter.slice(start, end).map((item) => (
+      {filteredData.length ? (
+        filteredData.slice(start, end).map((item) => (
           <div key={item.id} className="grid grid-cols-4">
             <div
               style={{ color: item.method === "expense" ? "red" : "green" }}
@@ -140,9 +120,9 @@ export default function Transactions() {
           </div>
         ))
       ) : (
-        <p className="text-xl text-gray-500 mt-5 text-center">No data</p>
+        <p className="text-gray-500 text-center mt-10">No data</p>
       )}
-      {dataFilter.length > 0 && totalPages != 1 && (
+      {filteredData.length > 0 && totalPages != 1 && (
         <div className="flex justify-center mt-5 flex-wrap gap-2">
           {[...Array(totalPages).keys()].map((i) => (
             <button

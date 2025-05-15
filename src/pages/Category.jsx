@@ -4,6 +4,8 @@ import { Link } from "react-router";
 
 import { UsePagination } from "../hooks/UsePagination";
 
+import { useFilterSortSearch } from "../hooks/UseFilterSortSearch";
+
 export default function Category() {
   const [categoryInput, setCategoryInput] = useState("");
   const [addCategory, { isLoading: isAdding, error: addError }] =
@@ -32,7 +34,20 @@ export default function Category() {
     }
   };
 
-  const [totalPages, page, setPage, start, end] = UsePagination(categories, 7);
+  const { filteredData, searchInput, setSearchInput } = useFilterSortSearch(
+    categories,
+    {
+      enableSearch: true,
+      enableSort: false,
+      enableFilter: false,
+      searchKey: "category",
+    }
+  );
+
+  const [totalPages, page, setPage, start, end] = UsePagination(
+    filteredData,
+    15
+  );
 
   if (isLoading) return <p>Loading categories...</p>;
 
@@ -70,23 +85,37 @@ export default function Category() {
         </p>
       )}
 
-      <div className="w-full grid grid-cols-4 gap-10 mt-10">
-        {categories?.slice(start, end).map((item) => (
-          <Link
-            key={item.id}
-            to={`/category/${item.category.toLowerCase()}`}
-            state={item}
-          >
-            <div
-              style={{ backgroundColor: item.color }}
-              className="text-center p-10 border w-full box-border rounded hover:opacity-50"
-            >
-              <p className="text-xl font-bold text-white">{item.category}</p>
-            </div>
-          </Link>
-        ))}
+      <div className="w-full flex justify-end my-5">
+        <input
+          type="text"
+          placeholder="Search"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+          className="px-5 py-3 border border-gray-300 rounded-xs text-xl focus:outline-none h-15"
+        />
       </div>
-      {categories.length > 0 && totalPages != 1 && (
+
+      <div className="w-full grid grid-cols-4 gap-10 mt-10">
+        {filteredData.length ? (
+          filteredData.slice(start, end).map((item) => (
+            <Link
+              key={item.id}
+              to={`/category/${item.category.toLowerCase()}`}
+              state={item}
+            >
+              <div
+                style={{ backgroundColor: item.color }}
+                className="text-center p-10 border w-full box-border rounded hover:opacity-50"
+              >
+                <p className="text-xl font-bold text-white">{item.category}</p>
+              </div>
+            </Link>
+          ))
+        ) : (
+          <p className="text-xl text-gray-500 mt-5 text-start">No data</p>
+        )}
+      </div>
+      {filteredData.length > 0 && totalPages != 1 && (
         <div className="flex justify-center mt-5 flex-wrap gap-2">
           {[...Array(Math.ceil(totalPages)).keys()].map((i) => (
             <button

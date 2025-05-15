@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { path: "/", label: "Dashboard", icon: "dashboard.png" },
+  { path: "/dashboard", label: "Dashboard", icon: "dashboard.png" },
   { path: "/category", label: "Category", icon: "category.png" },
   { path: "/transactions", label: "Transactions", icon: "transactions.png" },
   { path: "/incomes", label: "Incomes", icon: "incomes.png" },
@@ -22,7 +22,7 @@ export function Navigation() {
             key={item.path}
             to={item.path}
             className={`${
-              location.pathname === item.path && "bg-[#299D91]"
+              location.pathname.startsWith(item.path) && "bg-[#299D91]"
             } flex justify-left mx-5 py-2 px-5 gap-2 items-center rounded-xs hover:bg-[#299D91]`}
           >
             <div
