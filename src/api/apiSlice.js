@@ -113,6 +113,13 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: [{ type: "expenses", id: "LIST" }],
     }),
+    deleteCategory: build.mutation({
+      query: (id) => ({
+        url: `category/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "category", id: "LIST" }],
+    }),
   }),
 });
 
@@ -130,4 +137,5 @@ export const {
   useChangeIncomeMutation,
   useChangeExpenseMutation,
   useChangeAmountMutation,
+  useDeleteCategoryMutation,
 } = apiSlice;

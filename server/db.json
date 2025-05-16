@@ -29,13 +29,6 @@
       "method": "income"
     },
     {
-      "id": "mal1ldbw",
-      "date": "5/12/2025, 5:11:39 PM",
-      "cash": 10000,
-      "description": "Salary",
-      "method": "income"
-    },
-    {
       "id": "mapuure7",
       "date": "5/16/2025, 2:01:51 AM",
       "cash": 5000,
@@ -93,14 +86,6 @@
       "category": "Education"
     },
     {
-      "id": "mal1kli8",
-      "date": "5/12/2025, 5:11:03 PM",
-      "cash": 570,
-      "description": "Burger",
-      "method": "expense",
-      "category": "Cafe"
-    },
-    {
       "id": "malgkbc1",
       "date": "5/13/2025, 12:10:44 AM",
       "cash": 1500,
@@ -133,38 +118,6 @@
       "category": "Travel"
     },
     {
-      "id": "malgmnjx",
-      "date": "5/13/2025, 12:12:33 AM",
-      "cash": 500,
-      "description": "Doner",
-      "method": "expense",
-      "category": "Food"
-    },
-    {
-      "id": "malgmz6q",
-      "date": "5/13/2025, 12:12:49 AM",
-      "cash": 340,
-      "description": "Saryagash",
-      "method": "expense",
-      "category": "Drinks"
-    },
-    {
-      "id": "malgndno",
-      "date": "5/13/2025, 12:13:07 AM",
-      "cash": 500,
-      "description": "Charity",
-      "method": "expense",
-      "category": "Charity"
-    },
-    {
-      "id": "malgnkiw",
-      "date": "5/13/2025, 12:13:16 AM",
-      "cash": 1000,
-      "description": "Cinema",
-      "method": "expense",
-      "category": "Entertainment"
-    },
-    {
       "id": "mamluehp",
       "date": "5/13/2025, 7:26:19 PM",
       "cash": 500,
@@ -173,12 +126,12 @@
       "category": "Market"
     },
     {
-      "id": "mapuss0z",
-      "date": "5/16/2025, 2:00:19 AM",
-      "cash": 500,
-      "description": "Cola",
+      "id": "maqt4g7z",
+      "date": "5/16/2025, 6:01:10 PM",
+      "cash": 5000,
+      "description": "Charity",
       "method": "expense",
-      "category": "Market"
+      "category": "Charity"
     }
   ],
   "category": [
@@ -186,7 +139,7 @@
       "id": "907f",
       "category": "Market",
       "color": "rgba(207, 90, 29, 0.5)",
-      "amount": 1750
+      "amount": 2000
     },
     {
       "id": "fac6",
@@ -237,40 +190,10 @@
       "amount": 5000
     },
     {
-      "id": "24a3",
-      "category": "Food",
-      "color": "rgba(119, 157, 225, 0.5)",
-      "amount": 500
-    },
-    {
-      "id": "8dbb",
-      "category": "Drinks",
-      "color": "rgba(39, 140, 20, 0.5)",
-      "amount": 340
-    },
-    {
-      "id": "521e",
+      "id": "42c3",
       "category": "Charity",
-      "color": "rgba(4, 75, 85, 0.5)",
-      "amount": 500
-    },
-    {
-      "id": "f8ce",
-      "category": "Entertainment",
-      "color": "rgba(233, 168, 202, 0.5)",
-      "amount": 1000
-    },
-    {
-      "id": "0361",
-      "category": "Family",
-      "color": "rgba(1, 189, 251, 0.5)",
-      "amount": "0"
-    },
-    {
-      "id": "f689",
-      "category": "Cafe",
-      "color": "rgba(52, 206, 1, 0.5)",
-      "amount": 570
+      "color": "rgba(234, 192, 140, 0.5)",
+      "amount": 5000
     }
   ]
 }

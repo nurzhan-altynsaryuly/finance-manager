@@ -17,8 +17,10 @@ export default function Incomes() {
   const [deleteIncome] = useDeleteIncomeMutation();
   const [changeIncome] = useChangeIncomeMutation();
 
-  const [modal, setModal] = useState(false);
+  const [modalChange, setModalChange] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
   const [changingItem, setChangingItem] = useState(null);
+  const [activeId, setActiveId] = useState(null);
 
   const [cash, setCash] = useState("");
   const [description, setDescription] = useState("");
@@ -39,7 +41,7 @@ export default function Incomes() {
 
   const editData = (item) => {
     setChangingItem(item);
-    setModal(true);
+    setModalChange(true);
   };
 
   const changeCash = (value) => {
@@ -84,14 +86,24 @@ export default function Incomes() {
     15
   );
 
+  const handleModalDelete = (id) => {
+    setModalDelete(true);
+    setActiveId(id);
+  };
+
+  const handleDeleteIncome = () => {
+    setModalDelete(false);
+    deleteIncome(activeId);
+  };
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
     <>
-      {modal && (
+      {modalChange && (
         <ModalItem>
           <button
-            onClick={() => setModal(false)}
+            onClick={() => setModalChange(false)}
             className="text-xl hover:cursor-pointer hover:opacity-50 absolute top-3 right-2"
           >
             ❌
@@ -119,6 +131,27 @@ export default function Incomes() {
           >
             Save
           </button>
+        </ModalItem>
+      )}
+      {modalDelete && (
+        <ModalItem>
+          <p className="text-white text-center text-xl font-bold mb-2">
+            Do you want to delete this income?
+          </p>
+          <div className="flex justify-center gap-5 mt-5">
+            <button
+              className={`px-5 py-2 border-1 border-solid text-md font-['Inter'] w-max rounded-xs flex items-center transition bg-red-500 text-white hover:cursor-pointer hover:bg-red-300`}
+              onClick={handleDeleteIncome}
+            >
+              Delete
+            </button>
+            <button
+              className={`px-5 py-2 border-1 border-solid text-md font-['Inter'] w-max rounded-xs flex items-center transition bg-sky-500 text-white hover:cursor-pointer hover:bg-sky-300`}
+              onClick={() => setModalDelete(false)}
+            >
+              Cancel
+            </button>
+          </div>
         </ModalItem>
       )}
       <div className="w-5/6 px-30">
@@ -197,7 +230,7 @@ export default function Incomes() {
                   {item.date}
                 </p>
                 <button
-                  onClick={() => deleteIncome(item.id)}
+                  onClick={() => handleModalDelete(item.id)}
                   className="text-xl mt-2 hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-2"
                 >
                   🗑️

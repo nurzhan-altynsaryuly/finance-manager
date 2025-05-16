@@ -106,8 +106,9 @@ export default function Transactions() {
             <div
               style={{
                 backgroundColor: item.category
-                  ? data.find((category) => category.category === item.category)
-                      .color
+                  ? data?.find(
+                      (category) => category.category === item.category
+                    ).color
                   : "#00ff00",
               }}
               className="border-gray-500 p-3 text-center border-1"
