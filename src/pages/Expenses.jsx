@@ -1,42 +1,22 @@
-import {
-  useGetExpensesQuery,
-  useAddExpenseMutation,
-  useDeleteExpenseMutation,
-  useGetCategoryQuery,
-  useAddAmountMutation,
-  useDeleteAmountMutation,
-  useChangeExpenseMutation,
-  useChangeAmountMutation,
-} from "../api/apiSlice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+
+import { useGetExpensesQuery, useGetCategoryQuery } from "../api/apiSlice";
+
 import ModalItem from "../components/ModalItem";
 
 import { useFilterSortSearch } from "../hooks/UseFilterSortSearch";
 
 import { UsePagination } from "../hooks/UsePagination";
+import Pagination from "../components/Pagination";
+
+import { useExpenseAdd } from "../hooks/UseExpenseAdd";
+import { useExpenseEdit } from "../hooks/UseExpenseEdit";
+import { useExpenseDelete } from "../hooks/UseExpenseDelete";
 
 export default function Expenses() {
   const { data: expenses, isLoading: loadingExpenses } = useGetExpensesQuery();
   const { data: categories, isLoading: loadingCategories } =
     useGetCategoryQuery();
-
-  const [addExpense] = useAddExpenseMutation();
-  const [deleteExpense] = useDeleteExpenseMutation();
-  const [addAmount] = useAddAmountMutation();
-  const [deleteAmount] = useDeleteAmountMutation();
-  const [changeExpense] = useChangeExpenseMutation();
-  const [changeAmount] = useChangeAmountMutation();
-
-  const [modalChange, setModalChange] = useState(false);
-  const [modalDelete, setModalDelete] = useState(false);
-  const [changingItem, setChangingItem] = useState(null);
-  const [activeId, setActiveId] = useState(null);
-
-  const [cash, setCash] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [prevCategory, setPrevCategory] = useState("");
-  const [prevCash, setPrevCash] = useState("");
 
   useEffect(() => {
     if (categories && categories.length > 0) {
@@ -44,107 +24,20 @@ export default function Expenses() {
     }
   }, [categories]);
 
-  const isButtonDisabled = !cash || !description || cash <= 0;
+  const { cash, setCash, description, setDescription, category, setCategory, handleAddExpense} =
+    useExpenseAdd(categories);
 
-  const handleAddExpense = () => {
-    const categoryToUpdate = categories.find(
-      (item) => item.category === category
-    );
+  const {
+    modalChange,
+    setModalChange,
+    changingItem,
+    startEditing,
+    updateField,
+    saveChanges,
+  } = useExpenseEdit(categories);
 
-    const updatedCategory = {
-      ...categoryToUpdate,
-      amount: Number(categoryToUpdate.amount) + Number(cash),
-    };
-
-    const expense = {
-      id: Date.now().toString(36),
-      date: new Date().toLocaleString("en-US"),
-      cash: Number(cash),
-      description,
-      method: "expense",
-      category,
-    };
-
-    addAmount(updatedCategory);
-    addExpense(expense);
-
-    setCash("");
-    setDescription("");
-  };
-
-  const deleteData = (item) => {
-    const categoryToUpdate = categories.find(
-      (categoryItem) => categoryItem.category === item.category
-    );
-
-    const updatedCategory = {
-      ...categoryToUpdate,
-      amount: Number(categoryToUpdate.amount) - Number(item.cash),
-    };
-    deleteAmount(updatedCategory);
-    deleteExpense(item.id);
-  };
-
-  const editData = (item) => {
-    setChangingItem(item);
-    setPrevCategory(
-      categories.find((category) => category.category == item.category)
-    );
-    setPrevCash(item.cash);
-    setModalChange(true);
-  };
-
-  const changeCash = (value) => {
-    const newValue = {
-      ...changingItem,
-      cash: value,
-    };
-    setChangingItem(newValue);
-  };
-
-  const changeDescription = (value) => {
-    const newValue = {
-      ...changingItem,
-      description: value,
-    };
-    setChangingItem(newValue);
-  };
-
-  const changeCategory = (value) => {
-    const newValue = {
-      ...changingItem,
-      category: value,
-    };
-    setChangingItem(newValue);
-  };
-
-  const saveData = async () => {
-    changeExpense(changingItem);
-    const newCategory = categories.find(
-      (item) => item.category === changingItem.category
-    );
-    if (newCategory.category === prevCategory.category) {
-      const data = {
-        ...prevCategory,
-        amount:
-          Number(prevCategory.amount) -
-          Number(prevCash) +
-          Number(changingItem.cash),
-      };
-      changeAmount(data);
-      return;
-    }
-    const prevCategoryData = {
-      ...prevCategory,
-      amount: Number(prevCategory.amount) - Number(prevCash),
-    };
-    changeAmount(prevCategoryData);
-    const newCategoryData = {
-      ...newCategory,
-      amount: Number(newCategory.amount) + Number(changingItem.cash),
-    };
-    changeAmount(newCategoryData);
-  };
+  const { modalDelete, setModalDelete, confirmDelete, handleDelete } =
+    useExpenseDelete(categories);
 
   const {
     filteredData,
@@ -162,20 +55,13 @@ export default function Expenses() {
     enableFilter: true,
     searchKey: "description",
   });
+
   const [totalPages, page, setPage, start, end] = UsePagination(
     filteredData,
     15
   );
 
-  const handleModalDelete = (id) => {
-    setModalDelete(true);
-    setActiveId(id);
-  };
-
-  const handleDeleteExpense = () => {
-    setModalDelete(false);
-    deleteExpense(activeId);
-  };
+  const isButtonDisabled = !cash || !description || cash <= 0;
 
   if (loadingCategories || loadingExpenses) return <p>Loading...</p>;
 
@@ -198,21 +84,21 @@ export default function Expenses() {
           <input
             type="number"
             value={changingItem.cash}
-            onChange={(e) => changeCash(e.target.value)}
+            onChange={(e) => updateField("cash", e.target.value)}
             className="p-5 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none bg-white w-full mt-5"
             placeholder="Amount"
           />
           <input
             type="text"
             value={changingItem.description}
-            onChange={(e) => changeDescription(e.target.value)}
+            onChange={(e) => updateField("description", e.target.value)}
             className="p-5 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none bg-white w-full mt-5"
             placeholder="Description"
           />
           <select
             className="px-4 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none w-full mt-5 bg-white"
             value={changingItem.category}
-            onChange={(e) => changeCategory(e.target.value)}
+            onChange={(e) => updateField("category", e.target.value)}
           >
             {categories.map((item) => (
               <option key={item.id} value={item.category}>
@@ -221,7 +107,7 @@ export default function Expenses() {
             ))}
           </select>
           <button
-            onClick={saveData}
+            onClick={saveChanges}
             className={`h-15 text-xl font-['Inter'] w-full mt-5 rounded-xs transitionbg-sky-900 text-white bg-sky-900 hover:bg-sky-700 hover:cursor-pointer flex justify-center items-center`}
           >
             Save
@@ -231,12 +117,12 @@ export default function Expenses() {
       {modalDelete && (
         <ModalItem>
           <p className="text-white text-center text-xl font-bold mb-2">
-            Do you want to delete this income?
+            Do you want to delete this expense?
           </p>
           <div className="flex justify-center gap-5 mt-5">
             <button
               className={`px-5 py-2 border-1 border-solid text-md font-['Inter'] w-max rounded-xs flex items-center transition bg-red-500 text-white hover:cursor-pointer hover:bg-red-300`}
-              onClick={handleDeleteExpense}
+              onClick={handleDelete}
             >
               Delete
             </button>
@@ -365,13 +251,13 @@ export default function Expenses() {
                   {item.date}
                 </p>
                 <button
-                  onClick={() => handleModalDelete(item.id)}
+                  onClick={() => confirmDelete(item)}
                   className="text-xl hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-2"
                 >
                   🗑️
                 </button>
                 <button
-                  onClick={() => editData(item)}
+                  onClick={() => startEditing(item)}
                   className="text-xl hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-10"
                 >
                   ✏️
@@ -383,21 +269,7 @@ export default function Expenses() {
           )}
         </div>
         {filteredData.length > 0 && totalPages != 1 && (
-          <div className="flex justify-center mt-5 flex-wrap gap-2">
-            {[...Array(totalPages).keys()].map((i) => (
-              <button
-                key={i}
-                onClick={() => setPage(i + 1)}
-                className={`px-4 py-2 rounded hover:cursor-pointer ${
-                  page === i + 1
-                    ? "bg-[#299D91] text-white font-bold"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
+          <Pagination pages={totalPages} page={page} setPage={setPage} />
         )}
       </div>
     </>

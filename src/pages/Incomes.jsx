@@ -1,68 +1,37 @@
-import {
-  useGetIncomesQuery,
-  useAddIncomeMutation,
-  useDeleteIncomeMutation,
-  useChangeIncomeMutation,
-} from "../api/apiSlice";
-import { useState } from "react";
+import { useGetIncomesQuery } from "../api/apiSlice";
+
 import ModalItem from "../components/ModalItem";
+
 import { UsePagination } from "../hooks/UsePagination";
+import Pagination from '../components/Pagination'
 
 import { useFilterSortSearch } from "../hooks/UseFilterSortSearch";
+
+import { useIncomeAdd } from "../hooks/UseIncomeAdd";
+import { useIncomeDelete } from "../hooks/UseIncomeDelete";
+import { useIncomeEdit } from "../hooks/UseIncomeEdit";
 
 export default function Incomes() {
   const { data, isLoading } = useGetIncomesQuery();
 
-  const [addIncome] = useAddIncomeMutation();
-  const [deleteIncome] = useDeleteIncomeMutation();
-  const [changeIncome] = useChangeIncomeMutation();
+  const { cash, setCash, description, setDescription, handleAddIncome } =
+    useIncomeAdd();
 
-  const [modalChange, setModalChange] = useState(false);
-  const [modalDelete, setModalDelete] = useState(false);
-  const [changingItem, setChangingItem] = useState(null);
-  const [activeId, setActiveId] = useState(null);
+  const {
+    modalDelete,
+    setModalDelete,
+    handleDeleteIncome,
+    handleModalDelete
+  } = useIncomeDelete();
 
-  const [cash, setCash] = useState("");
-  const [description, setDescription] = useState("");
-
-  const handleAddIncome = () => {
-    const income = {
-      id: Date.now().toString(36),
-      date: new Date().toLocaleString("en-US"),
-      cash: Number(cash),
-      description,
-      method: "income",
-    };
-
-    addIncome(income);
-    setCash("");
-    setDescription("");
-  };
-
-  const editData = (item) => {
-    setChangingItem(item);
-    setModalChange(true);
-  };
-
-  const changeCash = (value) => {
-    const newValue = {
-      ...changingItem,
-      cash: value,
-    };
-    setChangingItem(newValue);
-  };
-
-  const changeDescription = (value) => {
-    const newValue = {
-      ...changingItem,
-      description: value,
-    };
-    setChangingItem(newValue);
-  };
-
-  const saveData = () => {
-    changeIncome(changingItem);
-  };
+  const {
+    modalChange,
+    setModalChange,
+    changingItem,
+    startEditing,
+    updateField,
+    saveChanges,
+  } = useIncomeEdit();
 
   const {
     filteredData,
@@ -86,16 +55,6 @@ export default function Incomes() {
     15
   );
 
-  const handleModalDelete = (id) => {
-    setModalDelete(true);
-    setActiveId(id);
-  };
-
-  const handleDeleteIncome = () => {
-    setModalDelete(false);
-    deleteIncome(activeId);
-  };
-
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -109,24 +68,24 @@ export default function Incomes() {
             ❌
           </button>
           <p className="text-xl text-center text-white font-['Inter'] font-bold">
-            Change Income
+            Change income
           </p>
           <input
             type="number"
             value={changingItem.cash}
-            onChange={(e) => changeCash(e.target.value)}
+            onChange={(e) => updateField("cash", e.target.value)}
             className="p-5 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none bg-white w-full mt-5"
             placeholder="Amount"
           />
           <input
             type="text"
             value={changingItem.description}
-            onChange={(e) => changeDescription(e.target.value)}
+            onChange={(e) => updateField("description", e.target.value)}
             className="p-5 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none bg-white w-full mt-5"
             placeholder="Description"
           />
           <button
-            onClick={saveData}
+            onClick={saveChanges}
             className={`h-15 text-xl font-['Inter'] w-full mt-5 rounded-xs transitionbg-sky-900 text-white bg-sky-900 hover:bg-sky-700 hover:cursor-pointer flex justify-center items-center`}
           >
             Save
@@ -236,7 +195,7 @@ export default function Incomes() {
                   🗑️
                 </button>
                 <button
-                  onClick={() => editData(item)}
+                  onClick={() => startEditing(item)}
                   className="text-xl hover:cursor-pointer hover:opacity-50 absolute bottom-2 right-10"
                 >
                   ✏️
@@ -248,21 +207,7 @@ export default function Incomes() {
           )}
         </div>
         {filteredData.length > 0 && totalPages != 1 && (
-          <div className="flex justify-center mt-5 flex-wrap gap-2">
-            {[...Array(totalPages).keys()].map((i) => (
-              <button
-                key={i}
-                onClick={() => setPage(i + 1)}
-                className={`px-4 py-2 rounded hover:cursor-pointer ${
-                  page === i + 1
-                    ? "bg-[#299D91] text-white font-bold"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
+          <Pagination pages={totalPages} page={page} setPage={setPage} />
         )}
       </div>
     </>
