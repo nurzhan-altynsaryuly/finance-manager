@@ -31,8 +31,15 @@
     {
       "id": "mapuure7",
       "date": "5/16/2025, 2:01:51 AM",
-      "cash": 5000,
+      "cash": 5500,
       "description": "Freelance",
+      "method": "income"
+    },
+    {
+      "id": "mavp98d7",
+      "date": "5/20/2025, 4:11:46 AM",
+      "cash": 25000,
+      "description": "Debt",
       "method": "income"
     }
   ],
@@ -86,17 +93,9 @@
       "category": "Games"
     },
     {
-      "id": "malglnh2",
-      "date": "5/13/2025, 12:11:47 AM",
-      "cash": "300",
-      "description": "Shoes",
-      "method": "expense",
-      "category": "Clothes"
-    },
-    {
       "id": "malgmf8v",
       "date": "5/13/2025, 12:12:23 AM",
-      "cash": 5000,
+      "cash": 15000,
       "description": "France",
       "method": "expense",
       "category": "Travel"
@@ -104,18 +103,10 @@
     {
       "id": "maqt4g7z",
       "date": "5/16/2025, 6:01:10 PM",
-      "cash": 5000,
+      "cash": 7000,
       "description": "Charity",
       "method": "expense",
       "category": "Charity"
-    },
-    {
-      "id": "masmkxh5",
-      "date": "5/18/2025, 12:33:34 AM",
-      "cash": 500,
-      "description": "Cinema",
-      "method": "expense",
-      "category": "Entertainment"
     }
   ],
   "category": [
@@ -165,25 +156,19 @@
       "id": "405a",
       "category": "Travel",
       "color": "rgba(127, 49, 122, 0.5)",
-      "amount": 5000
+      "amount": 15000
     },
     {
       "id": "42c3",
       "category": "Charity",
       "color": "rgba(234, 192, 140, 0.5)",
-      "amount": 5000
+      "amount": 7000
     },
     {
-      "id": "b85f",
+      "id": "98af",
       "category": "Clothes",
-      "color": "rgba(226, 100, 40, 0.5)",
-      "amount": 300
-    },
-    {
-      "id": "c9b8",
-      "category": "Entertainment",
-      "color": "rgba(140, 224, 246, 0.5)",
-      "amount": 500
+      "color": "rgba(208, 187, 106, 0.5)",
+      "amount": 0
     }
   ]
 }
