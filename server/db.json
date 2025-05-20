@@ -3,28 +3,28 @@
     {
       "id": "maid0hf5",
       "date": "5/10/2025, 8:08:02 PM",
-      "cash": "500",
+      "cash": 500,
       "description": "Salary",
       "method": "income"
     },
     {
       "id": "majiovia",
       "date": "5/11/2025, 3:34:44 PM",
-      "cash": "2500",
+      "cash": 2500,
       "description": "Salary",
       "method": "income"
     },
     {
       "id": "majisy60",
       "date": "5/11/2025, 3:37:54 PM",
-      "cash": "1500",
+      "cash": 1500,
       "description": "Debt",
       "method": "income"
     },
     {
       "id": "majpwkcb",
       "date": "5/11/2025, 6:56:40 PM",
-      "cash": "500",
+      "cash": 500,
       "description": "Freelance",
       "method": "income"
     },
@@ -47,7 +47,7 @@
     {
       "id": "maicrqyl",
       "date": "5/10/2025, 8:01:14 PM",
-      "cash": "350",
+      "cash": 350,
       "description": "Nimesil",
       "method": "expense",
       "category": "Health"
@@ -55,7 +55,7 @@
     {
       "id": "maicy93h",
       "date": "5/10/2025, 8:06:18 PM",
-      "cash": "500",
+      "cash": 500,
       "description": "RDR 2",
       "method": "expense",
       "category": "Games"
@@ -63,7 +63,7 @@
     {
       "id": "maid1ep5",
       "date": "5/10/2025, 8:08:45 PM",
-      "cash": "444",
+      "cash": 444,
       "description": "Superlight",
       "method": "expense",
       "category": "Device"
@@ -71,7 +71,7 @@
     {
       "id": "majj25rk",
       "date": "5/11/2025, 3:45:04 PM",
-      "cash": "500",
+      "cash": 500,
       "description": "GTA 6",
       "method": "expense",
       "category": "Games"
@@ -107,6 +107,14 @@
       "description": "Charity",
       "method": "expense",
       "category": "Charity"
+    },
+    {
+      "id": "mawmjkc1",
+      "date": "5/20/2025, 7:43:35 PM",
+      "cash": 5000,
+      "description": "Shoes",
+      "method": "expense",
+      "category": "Clothes"
     }
   ],
   "category": [
@@ -168,7 +176,7 @@
       "id": "98af",
       "category": "Clothes",
       "color": "rgba(208, 187, 106, 0.5)",
-      "amount": 0
+      "amount": 5000
     }
   ]
 }

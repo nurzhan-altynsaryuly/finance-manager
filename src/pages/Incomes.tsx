@@ -11,6 +11,7 @@ import useIncomeAdd from "../hooks/useIncomeAdd";
 import useIncomeDelete from "../hooks/useIncomeDelete";
 import useIncomeEdit from "../hooks/useIncomeEdit";
 import { FC } from "react";
+import Income from "../models/Income";
 
 const Incomes: FC = () => {
   const { data, isLoading } = useGetIncomesQuery();
@@ -171,7 +172,7 @@ const Incomes: FC = () => {
 
         <div className="grid grid-cols-5 gap-5 mt-10">
           {filteredData.length ? (
-            [...filteredData].slice(start, end).map((item, idx) => (
+            [...filteredData].slice(start, end).map((item: Income) => (
               <div
                 key={item.id}
                 className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs relative"

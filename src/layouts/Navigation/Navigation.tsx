@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Link, useLocation } from "react-router-dom";
+import NavItem from "../../models/NavItem";
 
-const navItems = [
+const navItems: NavItem[] = [
   { path: "/dashboard", label: "Dashboard", icon: "dashboard.png" },
   { path: "/category", label: "Category", icon: "category.png" },
   { path: "/transactions", label: "Transactions", icon: "transactions.png" },
@@ -18,7 +19,7 @@ const Navigation: FC = () => {
         Finance Manager
       </p>
       <div className="flex flex-col gap-5">
-        {navItems.map((item) => (
+        {navItems.map((item: NavItem) => (
           <Link
             key={item.path}
             to={item.path}

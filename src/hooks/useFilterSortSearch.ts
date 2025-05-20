@@ -36,8 +36,12 @@ const useFilterSortSearch = (
   const result = useMemo(() => {
     let filtered = [...data];
 
-    if (enableFilter && filterValue !== "all") {
+    if (enableFilter && filterValue !== "all" && filterValue !== "incomes") {
       filtered = filtered.filter((item) => item.category === filterValue);
+    }
+
+    if (enableFilter && filterValue === "incomes") {
+      filtered = filtered.filter((item) => item.method === "income");
     }
 
     if (enableSearch && searchInput.length >= 2) {

@@ -12,6 +12,8 @@ import Pagination from "../components/Pagination";
 import useExpenseAdd from "../hooks/useExpenseAdd";
 import useExpenseEdit from "../hooks/useExpenseEdit";
 import useExpenseDelete from "../hooks/useExpenseDelete";
+import Category from "../models/Category";
+import Expense from "../models/Expense";
 
 const Expenses: FC = () => {
   const { data: expenses, isLoading: loadingExpenses } = useGetExpensesQuery();
@@ -167,7 +169,7 @@ const Expenses: FC = () => {
             onChange={(e) => setCategory(e.target.value)}
           >
             {categories && categories.length > 0 ? (
-              categories.map((item) => (
+              categories.map((item: Category) => (
                 <option key={item.id} value={item.category}>
                   {item.category}
                 </option>
@@ -216,7 +218,7 @@ const Expenses: FC = () => {
             className="px-4 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none w-max mr-5 bg-white"
           >
             <option value="all">All categories</option>
-            {categories.map((item) => (
+            {categories.map((item: Category) => (
               <option key={item.id} value={item.category}>
                 {item.category}
               </option>
@@ -233,7 +235,7 @@ const Expenses: FC = () => {
 
         <div className="grid grid-cols-5 gap-5 mt-10">
           {!loadingExpenses && filteredData.length ? (
-            [...filteredData].slice(start, end).map((item) => (
+            [...filteredData].slice(start, end).map((item: Expense) => (
               <div
                 key={item.id}
                 className="text-center m-auto p-10 border border-solid border-gray-300 w-full rounded-xs relative"

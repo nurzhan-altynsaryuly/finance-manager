@@ -14,6 +14,7 @@ import useCategoryDelete from "../hooks/useCategoryDelete";
 
 import Category from "../models/Category";
 import Expense from "../models/Expense";
+import Pagination from "../components/Pagination";
 
 const CategoryPage: FC = () => {
   const { data, isLoading } = useGetExpensesQuery();
@@ -135,7 +136,7 @@ const CategoryPage: FC = () => {
           </div>
         </div>
         {filteredData.length ? (
-          filteredData.slice(start, end).map((expense) => (
+          filteredData.slice(start, end).map((expense: Expense) => (
             <div key={expense.id} className="grid grid-cols-4">
               <div className="border-gray-500 text-center border-1 p-3 text-red-500">
                 -{expense.cash}$
@@ -158,21 +159,7 @@ const CategoryPage: FC = () => {
           <p className="text-gray-500 text-center mt-10">No data</p>
         )}
         {filteredData.length > 0 && totalPages != 1 && (
-          <div className="flex justify-center mt-5 flex-wrap gap-2">
-            {[...Array(totalPages).keys()].map((i) => (
-              <button
-                key={i}
-                onClick={() => setPage(i + 1)}
-                className={`px-4 py-2 rounded hover:cursor-pointer ${
-                  page === i + 1
-                    ? "bg-[#299D91] text-white font-bold"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
+          <Pagination pages={totalPages} page={page} setPage={setPage} />
         )}
       </div>
     </>

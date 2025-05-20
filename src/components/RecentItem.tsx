@@ -20,11 +20,11 @@ const RecentItem: FC = () => {
       <p className="text-3xl font-['Inter'] font-bold text-[#191919] w-max mb-5 text-center">
         Recent
       </p>
-      {transactionsData.slice(0, 5).map((item, idx) => {
+      {transactionsData.slice(0, 5).map((item) => {
         const isExpense = item.method === "expense";
         return (
           <div
-            key={idx}
+            key={item.id}
             className="flex gap-5 w-max text-xl h-max items-center justify-between"
           >
             <p className={isExpense ? "text-red-700" : "text-green-700"}>

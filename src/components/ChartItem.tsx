@@ -23,11 +23,11 @@ const ChartItem: FC = () => {
   if (!category.length) return <p>No data to display.</p>;
 
   const data = {
-    labels: category.map((item) => item.category),
+    labels: category.map((item: Category) => item.category),
     datasets: [
       {
-        data: category.map((item) => Number(item.amount)),
-        backgroundColor: category.map((item) => item.color),
+        data: category.map((item: Category) => Number(item.amount)),
+        backgroundColor: category.map((item: Category) => item.color),
       },
     ],
   };

@@ -1,6 +1,8 @@
 import useData from "../hooks/useData";
 import { useGetCategoryQuery } from "../api/apiSlice";
 import { FC } from "react";
+import Expense from "../models/Expense";
+import Category from "../models/Category";
 
 const ExpensesItem: FC = () => {
   const [, , expenses, loadingExpenses] = useData();
@@ -28,14 +30,14 @@ const ExpensesItem: FC = () => {
         {expenses
           .slice(-3)
           .reverse()
-          .map((item, idx) => {
+          .map((item: Expense) => {
             const category = data?.find(
-              (categoryItem) => categoryItem.category === item.category
+              (categoryItem: Category) => categoryItem.category === item.category
             );
 
             return (
               <div
-                key={idx}
+                key={item.id}
                 className="flex gap-5 items-center mb-2 justify-between"
               >
                 <p className="text-2xl font-['Inter'] font-bold text-center text-red-500 w-max">

@@ -1,5 +1,6 @@
 import { FC } from "react";
 import useData from "../hooks/useData";
+import Income from "../models/Income";
 
 const IncomesItem: FC = () => {
   const [incomes, loadingIncomes] = useData();
@@ -19,8 +20,8 @@ const IncomesItem: FC = () => {
           incomes
             .slice(-3)
             .reverse()
-            .map((item, idx) => (
-              <div key={idx} className="flex gap-5 items-center mb-2">
+            .map((item: Income) => (
+              <div key={item.id} className="flex gap-5 items-center mb-2">
                 <p className="text-2xl font-['Inter'] font-bold text-center text-green-500 w-max">
                   +{item.cash}$
                 </p>

@@ -10,6 +10,7 @@ import useFilterSortSearch from "../hooks/useFilterSortSearch";
 import ModalItem from "../components/ModalItem";
 
 import useCategoryAdd from "../hooks/useCategoryAdd";
+import Category from "../models/Category";
 
 const Category: FC = () => {
   const [, { isLoading: isAdding, error: addError }] = useAddCategoryMutation();

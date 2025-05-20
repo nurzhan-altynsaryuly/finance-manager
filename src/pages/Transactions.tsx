@@ -66,6 +66,7 @@ const Transactions: FC = () => {
           className="px-4 border-1 border-solid border-gray-300 h-15 text-xl font-['Inter'] rounded-xs focus:outline-none w-max mr-5 bg-white"
         >
           <option value="all">All categories</option>
+          <option value="incomes">Incomes</option>
           {data.map((item) => (
             <option key={item.id} value={item.category}>
               {item.category}
